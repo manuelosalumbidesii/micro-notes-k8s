@@ -14,32 +14,7 @@ spec:
         app: notes-backend
     spec:
       containers:
-      - name: notes-backend
-        image: ghcr.io/Manuelo Salumbides II/micro-notes-backend:latest
-        ports:
-        - containerPort: 5000
-        volumeMounts:
-        - name: notes-data
-          mountPath: /app/notes.json
-          subPath: notes.json
-        env:
-        - name: FLASK_ENV
-          value: production
-      volumes:
-      - name: notes-data
-        persistentVolumeClaim:
-          claimName: notes-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: notes-backend
-  namespace: micro-notes
-spec:
-  selector:
-    app: notes-backend
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-  type: ClusterIP
+        - name: notes-backend
+          image: micro-notes-backend:local
+          ports:
+            - containerPort: 5000

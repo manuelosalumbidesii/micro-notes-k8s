@@ -3,25 +3,23 @@ kind: Ingress
 metadata:
   name: micro-notes-ingress
   namespace: micro-notes
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
-  - host: micro-notes.local
-    http:
-      paths:
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: notes-backend
-            port:
-              number: 5000
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: notes-frontend
-            port:
-              number: 80
-
+    - host: micro-notes.local
+      http:
+        paths:
+          - path: /api/
+            pathType: Prefix
+            backend:
+              service:
+                name: notes-backend
+                port:
+                  number: 5000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: notes-frontend
+                port:
+                  number: 80

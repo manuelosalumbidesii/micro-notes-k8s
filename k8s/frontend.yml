@@ -14,10 +14,10 @@ spec:
         app: notes-frontend
     spec:
       containers:
-      - name: notes-frontend
-        image: ghcr.io/Manuelo Salumbides II/micro-notes-frontend:latest
-        ports:
-        - containerPort: 80
+        - name: notes-frontend
+          image: micro-notes-frontend:local
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
